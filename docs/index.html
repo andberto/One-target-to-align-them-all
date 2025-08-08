@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supplementary Material - One target to align them all</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.section-title {
+  margin-bottom: 30px;
+}
+
+.hero {
+  background: #f8f9fa;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+.author-info {
+  font-style: italic;
+  color: #555;
+}
+
+.grayscale-logo {
+  height: 60px;
+  width: auto;
+  filter: grayscale(100%) brightness(40%);
+  opacity: 0.85;
+  object-fit: contain;
+  transition: filter 0.3s, opacity 0.3s;
+}
+
+.grayscale-logo:hover {
+  filter: grayscale(0%) brightness(100%);
+  opacity: 1;
+}
+
+/* Contenitore relativo per canvas + legenda */
+#viewer-container {
+  position: relative;
+  width: 100%;
+  height: 500px; /* stessa altezza del canvas */
+  max-width: 100%; /* si adatta al contenitore genitore */
+}
+
+/* Canvas full width + altezza fissa */
+#viewer {
+  width: 100%;
+  height: 500px;
+  display: block;
+  background: #f8f9fa; /* sfondo nero se vuoi */
+}
+
+/* Stile legenda overlay */
+#legend {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  max-width: 220px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  user-select: none;
+  pointer-events: none; /* non blocca mouse */
+  z-index: 10;
+}
+
+#legend h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#legend ul {
+  padding-left: 16px;
+  margin: 0;
+}
+
+#legend li {
+  margin-bottom: 6px;
+}
+
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">Paper Supplementary</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#abstract">Abstract</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#method">Setup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#results">Target</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero section -->
+    <header class="hero" id="top">
+      <div class="container">
+        <h1>
+          One target to align them all: LiDAR, RGB and event cameras extrinsic
+          calibration for Autonomous Driving
+        </h1>
+        <p class="author-info">
+          Andrea Bertogalli<sup>1</sup>, Luca Magri<sup>1</sup>, Giacomo
+          Boracchi<sup>1</sup><br />
+          <small>
+            <sup>1</sup>Department of Electronics, Information and
+            Bioengineering, Politecnico di Milano, Milan, IT<br />
+            <strong>
+              Published at the British Machine Vision Conference (BMVC),
+              November 2025, Sheffield, UK
+              <img
+                src="assets/bmvc-2025.png"
+                alt="BMVC Logo"
+                style="height: 20px; margin-left: 8px; vertical-align: middle"
+              />
+            </strong>
+          </small>
+        </p>
+
+        <div
+          class="mt-4 d-flex justify-content-center align-items-center gap-4 flex-wrap"
+        >
+          <img
+            src="assets/politecnico.png"
+            alt="Politecnico di Milano Logo"
+            class="grayscale-logo"
+          />
+          <img
+            src="assets/aida.png"
+            alt="AIDA Logo"
+            class="grayscale-logo"
+            style="height: 40px"
+          />
+        </div>
+      </div>
+    </header>
+
+    <div class="text-center my-4">
+      <a href="#" target="_blank" class="text-decoration-none">
+        <img src="assets/pdf.png" alt="View the article" style="height: 50px" />
+        <div class="mt-2 text-muted">View the full paper here!</div>
+      </a>
+    </div>
+
+    <!-- Abstract -->
+    <section id="abstract">
+      <div class="container">
+        <h2 class="section-title">Abstract</h2>
+        <p>
+          We present a novel multi-modal extrinsic calibration framework
+          designed to simul- taneously estimate the relative poses between RGB
+          cameras, LiDARs, and Event cam- eras. Core of our approach is a novel
+          3D calibration target, specifically designed and constructed to be
+          concurrently perceived by all three sensing modalities. The target en-
+          codes features in planes, ChArUco, and active LED patterns – each
+          tailored to the unique characteristics of LiDARs, RGB cameras, and
+          event cameras respectively. This unique design enables a one-shot,
+          joint extrinsic calibration process, in contrast to existing ap-
+          proaches that typically rely on separate, pairwise calibrations. Our
+          calibration pipeline is suited for complex vision systems, and we
+          demonstrate the effectiveness of our approach in the context of
+          autonomous driving, where precise multi-sensor alignment is critical.
+          We validate the benefit of our approach through an extensive
+          experimental evaluation on a custom built dataset, recorded with an
+          advanced autonomous driving sensor setup, confirming the accuracy and
+          robustness of our method.
+        </p>
+      </div>
+    </section>
+
+<section id="method" class="bg-light">
+  <div class="container">
+    <h2 class="section-title">Our setup</h2>
+    <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+    <div id="viewer-container">
+      <canvas id="viewer"></canvas>
+      <div id="legend">
+        <h3>Controls</h3>
+        <ul>
+          <li><b>Left Mouse:</b> Rotate</li>
+          <li><b>Middle Mouse / Scroll:</b> Zoom</li>
+          <li><b>Right Mouse:</b> Pan</li>
+          <li><b>Touch:</b> Pinch to Zoom, Two Fingers to Pan</li>
+        </ul>
+      </div>
+    </div>
+    
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+   <figure style="flex: 1; text-align: center">
+      <img
+        src="./assets/sensors.png"
+        alt="Setup picture"
+        style="width: 60%;"
+      />
+      <figcaption>
+        <strong>Figure 1:</strong> The scene we are considering along with the installed sensor suite.
+      </figcaption>
+    </figure>
+
+
+  </div>
+</section>
+
+    <section id="target" class="bg-light">
+      <div class="container">
+        <h2 class="section-title">Calibration target</h2>
+        <p>
+          The calibration target is a cube with three visible adjacent faces,
+          each equipped with a 3×3 ChArUco board for detecting 2D features
+          <i>{a<sub>0</sub>, ..., a<sub>59</sub>}</i> in RGB images. The 3D
+          counterparts <i>{A<sub>0</sub>, ..., A<sub>59</sub>}</i> and cube
+          corners <i>{E<sub>0</sub>, ..., E<sub>6</sub>}</i> are extracted from
+          the point cloud. Seven LEDs placed on the cube’s corners blink at
+          unique, non-uniform frequencies, enabling their identification in the
+          event stream as <i>{e<sub>1</sub>, ..., e<sub>6</sub>}</i>. These
+          multi-modal correspondences are used to estimate the sensor pose via
+          PnP.
+        </p>
+
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 60%;
+            margin: 0 auto;
+          "
+        >
+          <figure style="flex: 1; text-align: center">
+            <img
+              src="./assets/cubeirl.jpg"
+              alt="Calibration Target 1"
+              style="width: auto; height: 300px"
+            />
+            <figcaption>
+              <strong>Figure 2:</strong> Our calibration target under
+              construction.
+            </figcaption>
+          </figure>
+          <figure style="flex: 1; text-align: center">
+            <img
+              src="./assets/base_circuit.png"
+              alt="Calibration Target 2"
+              style="width: auto; height: 300px"
+            />
+            <figcaption>
+              <strong>Figure 3:</strong> The ESP32 microcontroller controlling a
+              LED blinking frequency, the same used to control all the seven LED
+              on the cube.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+      <div class="container">
+        <p class="mb-0">
+          &copy; 2025 Andrea Bertogalli & Collaborators. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module">
+  import * as THREE from "three";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+  import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+  const canvas = document.getElementById("viewer");
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    canvas.clientWidth / canvas.clientHeight,
+    0.1,
+    1000
+  );
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true,
+  });
+
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio > 1 ? window.devicePixelRatio / 2 : 1);
+
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+  
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.1;
+  camera.position.set(3.240410471262074, 2.471831729526737, 0.2857788700259484);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(5, 10, 7);
+  directionalLight.castShadow = true;
+  scene.add(directionalLight);
+
+  const floorGeometry = new THREE.PlaneGeometry(20, 20);
+  const floorMaterial = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    metalness: 0.8,
+    roughness: 0.2,
+  });
+  const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.y = 0; 
+  floor.receiveShadow = true;
+  scene.add(floor);
+
+  const loadingMessage = document.createElement("div");
+  loadingMessage.style.position = "absolute";
+  loadingMessage.style.top = "10px";
+  loadingMessage.style.left = "10px";
+  loadingMessage.style.color = "white";
+  loadingMessage.style.fontFamily = "Arial, sans-serif";
+  loadingMessage.style.backgroundColor = "rgba(0,0,0,0.5)";
+  loadingMessage.style.padding = "5px 10px";
+  loadingMessage.style.borderRadius = "5px";
+  loadingMessage.textContent = "Caricamento modello...";
+  document.body.appendChild(loadingMessage);
+
+  let modelLoaded = false;
+
+  const loader = new GLTFLoader();
+  loader.load(
+    "./assets/setup.glb",
+    (gltf) => {
+      const model = gltf.scene;
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+      scene.add(model);
+      modelLoaded = true;
+      loadingMessage.style.display = "none";
+      needsRender = true;
+    },
+    (xhr) => {
+      if (xhr.lengthComputable) {
+        const percent = (xhr.loaded / xhr.total) * 100;
+        loadingMessage.textContent = `Caricamento modello: ${percent.toFixed(0)}%`;
+      }
+    },
+    (error) => {
+      console.error("Error loading glb:", error);
+      loadingMessage.textContent = "Error loading glb:";
+    }
+  );
+
+  let needsRender = false;
+
+  controls.addEventListener("change", () => {
+    needsRender = true;
+  });
+
+  window.addEventListener("resize", () => {
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    needsRender = true;
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    controls.update();
+
+    if (needsRender && modelLoaded) {
+      renderer.render(scene, camera);
+      needsRender = false;
+    }
+  }
+
+  animate();
+</script>
+
+
+  </body>
+</html>
