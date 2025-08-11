@@ -10,144 +10,143 @@
     />
     <style>
       body {
-  scroll-behavior: smooth;
-}
+        scroll-behavior: smooth;
+      }
 
-section {
-  padding: 80px 0;
-}
+      section {
+        padding: 80px 0;
+      }
 
-.section-title {
-  margin-bottom: 30px;
-}
+      .section-title {
+        margin-bottom: 30px;
+      }
 
-.hero {
-  background: #f8f9fa;
-  padding: 80px 0;
-  text-align: center;
-}
+      .hero {
+        background: #f8f9fa;
+        padding: 80px 0;
+        text-align: center;
+      }
 
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
+      .hero h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
 
-.hero p {
-  font-size: 1.2rem;
-}
+      .hero p {
+        font-size: 1.2rem;
+      }
 
-.author-info {
-  font-style: italic;
-  color: #555;
-}
+      .author-info {
+        font-style: italic;
+        color: #555;
+      }
 
-.grayscale-logo {
-  height: 60px;
-  width: auto;
-  filter: grayscale(100%) brightness(40%);
-  opacity: 0.85;
-  object-fit: contain;
-  transition: filter 0.3s, opacity 0.3s;
-}
+      .grayscale-logo {
+        height: 60px;
+        width: auto;
+        filter: grayscale(100%) brightness(40%);
+        opacity: 0.85;
+        object-fit: contain;
+        transition: filter 0.3s, opacity 0.3s;
+      }
 
-.grayscale-logo:hover {
-  filter: grayscale(0%) brightness(100%);
-  opacity: 1;
-}
+      .grayscale-logo:hover {
+        filter: grayscale(0%) brightness(100%);
+        opacity: 1;
+      }
 
-/* Contenitore relativo per canvas + legenda */
-#viewer-container {
-  position: relative;
-  width: 100%;
-  height: 500px; /* stessa altezza del canvas */
-  max-width: 100%; /* si adatta al contenitore genitore */
-}
+      /* Contenitore relativo per canvas + legenda */
+      #viewer-container {
+        position: relative;
+        width: 100%;
+        height: 500px; /* stessa altezza del canvas */
+        max-width: 100%; /* si adatta al contenitore genitore */
+      }
 
-/* Canvas full width + altezza fissa */
-#viewer {
-  width: 100%;
-  height: 500px;
-  display: block;
-  background: #f8f9fa; /* sfondo nero se vuoi */
-}
+      /* Canvas full width + altezza fissa */
+      #viewer {
+        width: 100%;
+        height: 500px;
+        display: block;
+        background: #f8f9fa; /* sfondo nero se vuoi */
+      }
 
-/* Stile legenda overlay */
-#legend {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  max-width: 220px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  user-select: none;
-  pointer-events: none; /* non blocca mouse */
-  z-index: 10;
-}
+      /* Stile legenda overlay */
+      #legend {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        max-width: 220px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        user-select: none;
+        pointer-events: none; /* non blocca mouse */
+        z-index: 10;
+      }
 
-#legend h3 {
-  margin: 0 0 8px 0;
-  font-size: 16px;
-  font-weight: bold;
-}
+      #legend h3 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        font-weight: bold;
+      }
 
-#legend ul {
-  padding-left: 16px;
-  margin: 0;
-}
+      #legend ul {
+        padding-left: 16px;
+        margin: 0;
+      }
 
-#legend li {
-  margin-bottom: 6px;
-}
-  #viewer-container {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    background-color: #f0f0f0;
-  }
+      #legend li {
+        margin-bottom: 6px;
+      }
+      #viewer-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        background-color: #f0f0f0;
+      }
 
-  #viewer {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
+      #viewer {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
 
-  #progress-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 20px;
-    background-color: rgba(200, 200, 200, 0.5);
-    border-radius: 10px;
-    overflow: hidden;
-    z-index: 10;
-  }
+      #progress-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 20px;
+        background-color: rgba(200, 200, 200, 0.5);
+        border-radius: 10px;
+        overflow: hidden;
+        z-index: 10;
+      }
 
-  #progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #3399ff; /* azzurro */
-    transition: width 0.2s ease;
-  }
+      #progress-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #3399ff; /* azzurro */
+        transition: width 0.2s ease;
+      }
 
-  #loading-text {
-    position: absolute;
-    top: calc(50% + 30px);
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: rgba(200, 200, 200, 0.5);
-    padding: 4px 10px;
-    border-radius: 5px;
-    z-index: 10;
-  }
-
+      #loading-text {
+        position: absolute;
+        top: calc(50% + 30px);
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: Arial, sans-serif;
+        color: #333;
+        background-color: rgba(200, 200, 200, 0.5);
+        padding: 4px 10px;
+        border-radius: 5px;
+        z-index: 10;
+      }
     </style>
     <script type="importmap">
       {
@@ -182,7 +181,16 @@ section {
               <a class="nav-link" href="#method">Setup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#results">Target</a>
+              <a class="nav-link" href="#target">Target</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#code">Code</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#useful-links">Additional Resources</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacts">Contacts</a>
             </li>
           </ul>
         </div>
@@ -246,14 +254,14 @@ section {
         <p>
           We present a novel multi-modal extrinsic calibration framework
           designed to simul- taneously estimate the relative poses between RGB
-          cameras, LiDARs, and Event cam- eras. Core of our approach is a novel
+          cameras, LiDARs, and Event cameras. Core of our approach is a novel
           3D calibration target, specifically designed and constructed to be
-          concurrently perceived by all three sensing modalities. The target en-
+          concurrently perceived by all three sensing modalities. The target en
           codes features in planes, ChArUco, and active LED patterns – each
           tailored to the unique characteristics of LiDARs, RGB cameras, and
           event cameras respectively. This unique design enables a one-shot,
-          joint extrinsic calibration process, in contrast to existing ap-
-          proaches that typically rely on separate, pairwise calibrations. Our
+          joint extrinsic calibration process, in contrast to existing
+          approaches that typically rely on separate, pairwise calibrations. Our
           calibration pipeline is suited for complex vision systems, and we
           demonstrate the effectiveness of our approach in the context of
           autonomous driving, where precise multi-sensor alignment is critical.
@@ -265,41 +273,79 @@ section {
       </div>
     </section>
 
-<section id="method" class="bg-light">
-  <div class="container">
-    <h2 class="section-title">Our setup</h2>
-    <p>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    <div id="viewer-container">
-      <div id="progress-container"><div id="progress-bar"></div></div>
-    <div id="loading-text">Loading model...</div>
-      <canvas id="viewer"></canvas>
-      <div id="legend">
-        <h3>Controls</h3>
-        <ul>
-          <li><b>Left Mouse:</b> Rotate</li>
-          <li><b>Middle Mouse / Scroll:</b> Zoom</li>
-          <li><b>Right Mouse:</b> Pan</li>
-          <li><b>Touch:</b> Pinch to Zoom, Two Fingers to Pan</li>
-        </ul>
+    <section id="method" class="bg-light">
+      <div class="container">
+        <h2 class="section-title">Our setup</h2>
+        <p>
+          The experimental setup consists of a fully functional autonomous
+          vehicle (ADAS Level 5). In particular, we evaluated our calibration
+          approach on a Maserati GranCabrio Folgore, equipped with a flexible
+          platform that enables testing and swapping of sensor configurations to
+          explore novel approaches. As outlined in the paper, the configured
+          scene is static (as shown in the rendering below), which offers
+          certain advantages but also introduces specific challenges, discussed
+          in detail in the manuscript. From a practical perspective, a scene
+          such as the one proposed in our work is highly convenient in a
+          production environment: the calibration target can be permanently
+          installed, allowing vehicles to be parked in front of it for sensor
+          calibration.
+        </p>
+        <div id="viewer-container">
+          <div id="progress-container"><div id="progress-bar"></div></div>
+          <div id="loading-text">Loading model...</div>
+          <canvas id="viewer"></canvas>
+          <div id="legend">
+            <h3>Controls</h3>
+            <ul>
+              <li><b>Left Mouse:</b> Rotate</li>
+              <li><b>Middle Mouse / Scroll:</b> Zoom</li>
+              <li><b>Right Mouse:</b> Pan</li>
+              <li><b>Touch:</b> Pinch to Zoom, Two Fingers to Pan</li>
+            </ul>
+          </div>
+        </div>
+        <p>
+          In Figure 1, an overview of the main sensors tested is provided. The
+          sensing suite includes two Ouster LiDAR 360° Mid-Range units, which
+          deliver dense 3D representations of the surroundings with 128 scan
+          lines and a maximum range of 200 m; a Seyond Falcon K Ultra-Long Range
+          LiDAR, offering a 120° horizontal field of view and capable of
+          measuring distances up to 500 m over 152 scan lines; up to three Lucid
+          Vision IP68 RGB cameras; and an EVK4 Prophesee event-based camera
+          equipped with the IMX636 (HD) sensor. All sensor data are transmitted
+          to the processing unit via the ROS 2 middleware (<a
+            href="https://docs.ros.org/en/"
+            >ROS2 DOCS</a
+          >), ensuring synchronized acquisition and seamless integration with
+          the perception and calibration modules.
+        </p>
+        <figure
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          "
+        >
+          <div style="display: flex; gap: 20px; justify-content: center">
+            <img
+              src="./assets/sensors.png"
+              alt="Setup picture"
+              style="height: 350px; object-fit: contain"
+            />
+            <img
+              src="./assets/sensorsdetail.jpg"
+              alt="Another view"
+              style="height: 350px; object-fit: contain"
+            />
+          </div>
+          <figcaption style="margin-top: 10px">
+            <strong>Figure 1:</strong> The installed sensor suite. On the right
+            we can see a detail of the installed setup on the car.
+          </figcaption>
+        </figure>
       </div>
-    </div>
-    
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      </p>
-   <figure style="flex: 1; text-align: center">
-      <img
-        src="./assets/sensors.png"
-        alt="Setup picture"
-        style="width: 60%;"
-      />
-      <figcaption>
-        <strong>Figure 1:</strong> The scene we are considering along with the installed sensor suite.
-      </figcaption>
-    </figure>
-  </div>
-</section>
+    </section>
 
     <section id="target" class="bg-light">
       <div class="container">
@@ -330,7 +376,7 @@ section {
             <img
               src="./assets/cubeirl.jpg"
               alt="Calibration Target 1"
-              style="width: auto; height: 300px"
+              style="width: auto; height: 275px"
             />
             <figcaption>
               <strong>Figure 2:</strong> Our calibration target under
@@ -341,7 +387,7 @@ section {
             <img
               src="./assets/base_circuit.png"
               alt="Calibration Target 2"
-              style="width: auto; height: 300px"
+              style="width: auto; height: 275px"
             />
             <figcaption>
               <strong>Figure 3:</strong> The ESP32 microcontroller controlling a
@@ -349,148 +395,434 @@ section {
               on the cube.
             </figcaption>
           </figure>
+          <figure style="flex: 1; text-align: center">
+            <img
+              src="./assets/circuit.png"
+              alt="Calibration Target 2"
+              style="width: auto; height: 275px"
+            />
+            <figcaption>
+              <strong>Figure 4:</strong> The calibration target control circuit.
+            </figcaption>
+          </figure>
+        </div>
+        <p>MISURE E ALTRI DETTAGLI SUL TARGET ................</p>
+      </div>
+    </section>
+
+    <section id="code" class="bg-light py-5">
+      <div class="container">
+        <h2 class="section-title mb-4">Code</h2>
+        <div class="row g-4 justify-content-center">
+          <!-- Card 1 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">CODE 1</h5>
+                <p class="card-text flex-grow-1">COMING SOON! 1.</p>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2"
+                >
+                  <img
+                    src="./assets/github.png"
+                    alt="GitHub"
+                    style="width: 20px; height: 20px"
+                  />
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">CODE 2</h5>
+                <p class="card-text flex-grow-1">COMING SOON! 2.</p>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2"
+                >
+                  <img
+                    src="./assets/github.png"
+                    alt="GitHub"
+                    style="width: 20px; height: 20px"
+                  />
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">CODE 3</h5>
+                <p class="card-text flex-grow-1">COMING SOON! 3.</p>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2"
+                >
+                  <img
+                    src="./assets/github.png"
+                    alt="GitHub"
+                    style="width: 20px; height: 20px"
+                  />
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">CODE 4</h5>
+                <p class="card-text flex-grow-1">COMING SOON! 4.</p>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2"
+                >
+                  <img
+                    src="./assets/github.png"
+                    alt="GitHub"
+                    style="width: 20px; height: 20px"
+                  />
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">CODE 5</h5>
+                <p class="card-text flex-grow-1">COMING SOON! 5.</p>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2"
+                >
+                  <img
+                    src="./assets/github.png"
+                    alt="GitHub"
+                    style="width: 20px; height: 20px"
+                  />
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <section id="useful-links" class="bg-light py-5">
+      <div class="container">
+        <h2 class="section-title mb-4">Other useful resources</h2>
+        <div class="row g-4 justify-content-center">
+          <!-- Card 1 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Related thesis</h5>
+                <p class="card-text flex-grow-1">
+                  Here you can find a comprehensive document of a thesis, which
+                  provides valuable insights into this work. While the thesis
+                  covers a broader range of topics, it presents them in a more
+                  foundational and less elaborated manner compared to the depth
+                  of analysis found in this paper.
+                </p>
+                <a
+                  href="https://www.politesi.polimi.it/retrieve/4ca0fb64-b18a-4895-bce7-17a9f8d3295d/2025_04_Bertogalli_Executive_Summary.pdf"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2 mt-auto"
+                >
+                  <img
+                    src="./assets/pdf.png"
+                    alt="GitHub"
+                    style="height: 20px"
+                  />
+                  Dowload resource
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Related thesis summary</h5>
+                <p class="card-text flex-grow-1">
+                  Here you can find a very brief summary of the thesis.
+                </p>
+                <a
+                  href="https://www.politesi.polimi.it/retrieve/ce50b006-c7d4-4d50-955e-fb6b87b5e839/2025_04_Bertogalli.pdf"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill d-flex align-items-center justify-content-center gap-2 mt-auto"
+                >
+                  <img
+                    src="./assets/pdf.png"
+                    alt="GitHub"
+                    style="height: 20px"
+                  />
+                  Dowload resource
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="bg-light py-5">
+      <div class="container">
+        <h2 class="section-title mb-4">Contacts</h2>
+        <div class="row g-4">
+          <!-- Contact form card -->
+          <div class="col-12 col-md-6">
+            <div class="card shadow-sm p-3 h-100">
+              <form
+                onsubmit="event.preventDefault(); sendEmail();"
+                style="width: 100%; margin: 0"
+              >
+                <div class="mb-3">
+                  <label for="sender" class="form-label">Your Email:</label>
+                  <input
+                    type="email"
+                    id="sender"
+                    name="sender"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="subject" class="form-label">Subject:</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="body" class="form-label">Message:</label>
+                  <textarea
+                    id="body"
+                    name="body"
+                    rows="5"
+                    class="form-control"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark rounded-pill w-100">
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Map card -->
+          <div class="col-12 col-md-6">
+            <div
+              class="card shadow-sm p-0 h-100 overflow-hidden"
+              style="height: 400px"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.573165447026!2d9.230998376522958!3d45.47840157107427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6f60b72aabb%3A0xaf41c6559c33cd1f!2sVia%20Giuseppe%20Ponzio%2C%2034%2C%2020133%20Milano%20MI!5e0!3m2!1sit!2sit!4v1754903837883!5m2!1sit!2sit"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                allowfullscreen=""
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function sendEmail() {
+        const sender = document.getElementById("sender").value;
+        const subject = document.getElementById("subject").value;
+        const body =
+          "From: " +
+          sender +
+          "%0D%0A%0D%0A" +
+          document.getElementById("body").value;
+
+        window.location.href =
+          "mailto:andrea.bertogalli.it@gmail.com?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          body;
+      }
+    </script>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-4">
       <div class="container">
         <p class="mb-0">
-          &copy; 2025 Andrea Bertogalli & Collaborators. All rights reserved.
+          &copy; 2025 Andrea Bertogalli & Collaborators. All rights reserved.<br />
+          Website:
+          <a
+            href="https://andberto.github.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white text-decoration-underline"
+          >
+            https://andberto.github.io/
+          </a>
         </p>
       </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script type="module">
-  import * as THREE from "three";
-  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-  import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+    <script type="module">
+      import * as THREE from "three";
+      import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+      import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-  const canvas = document.getElementById("viewer");
-  const scene = new THREE.Scene();
+      const canvas = document.getElementById("viewer");
+      const scene = new THREE.Scene();
 
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    canvas.clientWidth / canvas.clientHeight,
-    0.1,
-    1000
-  );
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        canvas.clientWidth / canvas.clientHeight,
+        0.1,
+        1000
+      );
 
-  const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true,
-    antialias: true,
-  });
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+      });
 
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio > 1 ? window.devicePixelRatio / 2 : 1);
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.setPixelRatio(
+        window.devicePixelRatio > 1 ? window.devicePixelRatio / 2 : 1
+      );
 
-  camera.aspect = canvas.clientWidth / canvas.clientHeight;
-  camera.updateProjectionMatrix();
-  
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
 
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.1;
-  camera.position.set(3.240410471262074, 2.471831729526737, 0.2857788700259484);
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.1;
+      camera.position.set(
+        3.240410471262074,
+        2.471831729526737,
+        0.2857788700259484
+      );
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-  scene.add(ambientLight);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambientLight);
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  directionalLight.position.set(5, 10, 7);
-  directionalLight.castShadow = true;
-  scene.add(directionalLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      directionalLight.position.set(5, 10, 7);
+      directionalLight.castShadow = true;
+      scene.add(directionalLight);
 
-  const floorGeometry = new THREE.PlaneGeometry(20, 20);
-  const floorMaterial = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
-    metalness: 0.8,
-    roughness: 0.2,
-  });
-  const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-  floor.rotation.x = -Math.PI / 2;
-  floor.position.y = 0; 
-  floor.receiveShadow = true;
-  scene.add(floor);
+      const floorGeometry = new THREE.PlaneGeometry(20, 20);
+      const floorMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        metalness: 0.8,
+        roughness: 0.2,
+      });
+      const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = 0;
+      floor.receiveShadow = true;
+      scene.add(floor);
 
-  const loadingMessage = document.createElement("div");
-  loadingMessage.style.position = "absolute";
-  loadingMessage.style.top = "10px";
-  loadingMessage.style.left = "10px";
-  loadingMessage.style.color = "white";
-  loadingMessage.style.fontFamily = "Arial, sans-serif";
-  loadingMessage.style.backgroundColor = "rgba(0,0,0,0.5)";
-  loadingMessage.style.padding = "5px 10px";
-  loadingMessage.style.borderRadius = "5px";
-  loadingMessage.textContent = "Loading scene...";
-  document.body.appendChild(loadingMessage);
+      const loadingMessage = document.createElement("div");
+      loadingMessage.style.position = "absolute";
+      loadingMessage.style.top = "10px";
+      loadingMessage.style.left = "10px";
+      loadingMessage.style.color = "white";
+      loadingMessage.style.fontFamily = "Arial, sans-serif";
+      loadingMessage.style.backgroundColor = "rgba(0,0,0,0.5)";
+      loadingMessage.style.padding = "5px 10px";
+      loadingMessage.style.borderRadius = "5px";
+      loadingMessage.textContent = "Loading scene...";
+      document.body.appendChild(loadingMessage);
 
-const progressContainer = document.getElementById("progress-container");
-const progressBar = document.getElementById("progress-bar");
-const loadingText = document.getElementById("loading-text");
+      const progressContainer = document.getElementById("progress-container");
+      const progressBar = document.getElementById("progress-bar");
+      const loadingText = document.getElementById("loading-text");
 
-let modelLoaded = false;
+      let modelLoaded = false;
 
-const loader = new GLTFLoader();
-loader.load(
-  "https://media.githubusercontent.com/media/andberto/One-target-to-align-them-all/refs/heads/main/docs/assets/setup.glb",
-  (gltf) => {
-    const model = gltf.scene;
-    model.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
+      const loader = new GLTFLoader();
+      loader.load(
+        "https://media.githubusercontent.com/media/andberto/One-target-to-align-them-all/refs/heads/main/docs/assets/setup.glb",
+        (gltf) => {
+          const model = gltf.scene;
+          model.traverse((child) => {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+            }
+          });
+          scene.add(model);
+          modelLoaded = true;
+          loadingText.style.display = "none";
+          progressContainer.style.display = "none";
+          needsRender = true;
+        },
+        (xhr) => {
+          if (xhr.lengthComputable) {
+            const percent = (xhr.loaded / xhr.total) * 100;
+            progressBar.style.width = `${percent}%`;
+            loadingText.textContent = `Loading scene: ${percent.toFixed(0)}%`;
+          }
+        },
+        (error) => {
+          console.error("Error loading glb:", error);
+          loadingText.textContent = "Error during model loading";
+          progressContainer.style.backgroundColor = "rgba(255, 0, 0, 0.3)";
+        }
+      );
+      let needsRender = false;
+
+      controls.addEventListener("change", () => {
+        needsRender = true;
+      });
+
+      window.addEventListener("resize", () => {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        needsRender = true;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        controls.update();
+
+        if (needsRender && modelLoaded) {
+          renderer.render(scene, camera);
+          needsRender = false;
+        }
       }
-    });
-    scene.add(model);
-    modelLoaded = true;
-    loadingText.style.display = "none";
-    progressContainer.style.display = "none";
-    needsRender = true;
-  },
-  (xhr) => {
-    if (xhr.lengthComputable) {
-      const percent = (xhr.loaded / xhr.total) * 100;
-      progressBar.style.width = `${percent}%`;
-      loadingText.textContent = `Loading scene: ${percent.toFixed(0)}%`;
-    }
-  },
-  (error) => {
-    console.error("Error loading glb:", error);
-    loadingText.textContent = "Error during model loading";
-    progressContainer.style.backgroundColor = "rgba(255, 0, 0, 0.3)";
-  }
-);
-  let needsRender = false;
 
-  controls.addEventListener("change", () => {
-    needsRender = true;
-  });
-
-  window.addEventListener("resize", () => {
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-    needsRender = true;
-  });
-
-  function animate() {
-    requestAnimationFrame(animate);
-
-    controls.update();
-
-    if (needsRender && modelLoaded) {
-      renderer.render(scene, camera);
-      needsRender = false;
-    }
-  }
-
-  animate();
-</script>
-
+      animate();
+    </script>
   </body>
 </html>
