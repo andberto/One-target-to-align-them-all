@@ -256,8 +256,8 @@
           designed to simul- taneously estimate the relative poses between RGB
           cameras, LiDARs, and Event cameras. Core of our approach is a novel 3D
           calibration target, specifically designed and constructed to be
-          concurrently perceived by all three sensing modalities. The target en
-          codes features in planes, ChArUco, and active LED patterns – each
+          concurrently perceived by all three sensing modalities. The target
+          encodes features in planes, ChArUco, and active LED patterns – each
           tailored to the unique characteristics of LiDARs, RGB cameras, and
           event cameras respectively. This unique design enables a one-shot,
           joint extrinsic calibration process, in contrast to existing
@@ -312,7 +312,7 @@
           LiDAR, offering a 120° horizontal field of view and capable of
           measuring distances up to 500 m over 152 scan lines; up to three Lucid
           Vision IP68 RGB cameras; and an EVK4 Prophesee event-based camera
-          equipped with the IMX636 (HD) sensor. All sensor data are transmitted
+          equipped with the IMX636 (HD) sensor. All sensors' data are transmitted
           to the processing unit via the ROS 2 middleware (<a
             href="https://docs.ros.org/en/"
             >ROS2 DOCS</a
@@ -354,12 +354,12 @@
           The calibration target is a cube with three visible adjacent faces,
           each equipped with a 3×3 ChArUco board for detecting 2D features
           <i>{a<sub>0</sub>, ..., a<sub>59</sub>}</i> in RGB images. The 3D
-          counterparts <i>{A<sub>0</sub>, ..., A<sub>59</sub>}</i> and cube
+          counterparts <i>{A<sub>0</sub>, ..., A<sub>59</sub>}</i> and cube's
           corners <i>{E<sub>0</sub>, ..., E<sub>6</sub>}</i> are extracted from
-          the point cloud. Seven LEDs placed on the cube’s corners blink at
+          the pointcloud. Seven LEDs placed on the cube’s corners blink at
           unique, non-uniform frequencies, enabling their identification in the
           event stream as <i>{e<sub>1</sub>, ..., e<sub>6</sub>}</i>. These
-          multi-modal correspondences are used to estimate the sensor pose via
+          multi-modal correspondences are used to estimate the sensor's pose via
           PnP.
         </p>
 
@@ -391,7 +391,7 @@
             />
             <figcaption>
               <strong>Figure 3:</strong> The ESP32 microcontroller controlling a
-              LED blinking frequency, the same used to control all the seven LED
+              LED blinking frequency, the same used to control all the seven LEDs
               on the cube.
             </figcaption>
           </figure>
@@ -407,11 +407,11 @@
           </figure>
         </div>
         <p>
-          Below we report some mesures to build your own target, notice that the
+          Below we report some measures to build your own target, notice that the
           target should be entirely captured by the cameras, LiDARs and event
-          cameras, it also need to be close to the sensors in order to
-          distinguish the features. As a distance from sensors guideline you can
-          consider 1 to 3 meters but the closest the better (in our case was 2m)
+          cameras, it also needs to be close to the sensors in order to
+          distinguish the features. As a guideline distance from sensors you can
+          consider 1 to 3 meters, but the closest the better (in our case was ~2m).
         </p>
         <figure
           style="
@@ -422,7 +422,6 @@
             margin: 40px auto;
           "
         >
-          <!-- Contenitore con immagine e tabella affiancate -->
           <div
             style="
               display: flex;
@@ -432,7 +431,6 @@
               width: 100%;
             "
           >
-            <!-- Immagine -->
             <div style="flex: 1; text-align: center">
               <img
                 src="./assets/measures.png"
@@ -441,7 +439,6 @@
               />
             </div>
 
-            <!-- Tabella -->
             <div style="flex: 1; overflow-x: auto">
               <table
                 style="
@@ -496,9 +493,9 @@
             </div>
           </div>
 
-          <!-- Caption sotto immagine + tabella -->
           <figcaption style="margin-top: 10px; text-align: center">
-            <strong>Figure 5:</strong> Target face with reference measures table.
+            <strong>Figure 5:</strong> Target face with reference measures
+            table.
           </figcaption>
         </figure>
       </div>
