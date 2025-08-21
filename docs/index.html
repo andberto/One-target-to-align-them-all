@@ -254,8 +254,8 @@
         <p>
           We present a novel multi-modal extrinsic calibration framework
           designed to simul- taneously estimate the relative poses between RGB
-          cameras, LiDARs, and Event cameras. Core of our approach is a novel
-          3D calibration target, specifically designed and constructed to be
+          cameras, LiDARs, and Event cameras. Core of our approach is a novel 3D
+          calibration target, specifically designed and constructed to be
           concurrently perceived by all three sensing modalities. The target en
           codes features in planes, ChArUco, and active LED patterns – each
           tailored to the unique characteristics of LiDARs, RGB cameras, and
@@ -406,7 +406,101 @@
             </figcaption>
           </figure>
         </div>
-        <p>MISURE E ALTRI DETTAGLI SUL TARGET ................</p>
+        <p>
+          Below we report some mesures to build your own target, notice that the
+          target should be entirely captured by the cameras, LiDARs and event
+          cameras, it also need to be close to the sensors in order to
+          distinguish the features. As a distance from sensors guideline you can
+          consider 1 to 3 meters but the closest the better (in our case was 2m)
+        </p>
+        <figure
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            margin: 40px auto;
+          "
+        >
+          <!-- Contenitore con immagine e tabella affiancate -->
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center; /* centratura verticale */
+              gap: 30px;
+              width: 100%;
+            "
+          >
+            <!-- Immagine -->
+            <div style="flex: 1; text-align: center">
+              <img
+                src="./assets/measures.png"
+                alt="Calibration Target with Table"
+                style="width: auto; height: 275px"
+              />
+            </div>
+
+            <!-- Tabella -->
+            <div style="flex: 1; overflow-x: auto">
+              <table
+                style="
+                  border-collapse: collapse;
+                  width: 100%;
+                  text-align: center;
+                  font-family: Arial, sans-serif;
+                "
+                border="1"
+              >
+                <thead style="background-color: #f2f2f2">
+                  <tr>
+                    <th>ID</th>
+                    <th>Component</th>
+                    <th>Dimension</th>
+                    <th>Unit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Cube face side</td>
+                    <td>0.60</td>
+                    <td>[m]</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Aruco square side</td>
+                    <td>0.118</td>
+                    <td>[m]</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Square dimension</td>
+                    <td>0.148</td>
+                    <td>[m]</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Origin Offset on <i>x</i> axis</td>
+                    <td>0.075</td>
+                    <td>[m]</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Origin Offset on <i>y</i> axis</td>
+                    <td>0.075</td>
+                    <td>[m]</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Caption sotto immagine + tabella -->
+          <figcaption style="margin-top: 10px; text-align: center">
+            <strong>Figure 5:</strong> Target face with reference measures table.
+          </figcaption>
+        </figure>
       </div>
     </section>
 
